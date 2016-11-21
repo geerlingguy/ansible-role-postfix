@@ -7,5 +7,8 @@
   apt: name=postfix state=installed
   when: ansible_os_family == 'Debian'
 
+- lineinfile: dest="/etc/postfix/main.cf" line="inet_protocols = ipv4"
+  when: postfix_ipv4 == 'true'
+
 - name: Ensure postfix is started and enabled at boot.
   service: name=postfix state=started enabled=yes
