@@ -10,5 +10,8 @@
 - lineinfile: dest="/etc/postfix/main.cf" line="inet_protocols = ipv4"
   when: postfix_ipv4 == 'true'
 
+- lineinfile: dest="/etc/postfix/main.cf" line="inet_protocols = ipv4" state=absent
+  when: postfix_ipv4 == 'false'
+
 - name: Ensure postfix is started and enabled at boot.
   service: name=postfix state=started enabled=yes
