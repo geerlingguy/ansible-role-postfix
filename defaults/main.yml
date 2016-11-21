@@ -1,2 +1,2 @@
 ---
-postfix_ipv4 == 'false'
+postfix_ipv4: 'false'
