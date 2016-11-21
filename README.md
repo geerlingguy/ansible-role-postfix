@@ -10,7 +10,9 @@ If you're using this as an SMTP relay server, you will need to do that on your o
 
 ## Role Variables
 
-None.
+    postfix_ipv4: true
+
+Set `postfix_ipv4` to `true` to add `inet_protocols = ipv4` in the postfix conf which may resolve some networking issues when delivering mail.
 
 ## Dependencies
 
