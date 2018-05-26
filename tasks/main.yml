@@ -16,6 +16,14 @@
       value: "{{ postfix_inet_protocols }}"
   notify: restart postfix
 
+- name: Enable relay to MailHog.
+  lineinfile:
+    dest: "{{ postfix_config_file }}"
+    line: "relayhost = 127.0.0.1:1025"
+    regexp: "^relayhost ="
+  when: postfix_relay_to_mailhog
+  notify: restart postfix
+
 - name: Ensure postfix is started and enabled at boot.
   service:
     name: postfix

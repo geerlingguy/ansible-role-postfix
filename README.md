@@ -26,6 +26,10 @@ The state in which the Postfix service should be after this role runs, and wheth
 
 Options for values `inet_interfaces` and `inet_protocols` in the `main.cf` file.
 
+    postfix_relay_to_mailhog: no
+
+Option to enable relaying to MailHog on the localhost, port 1025. Requires [MailHog](https://github.com/geerlingguy/ansible-role-mailhog) to be installed on localhost.
+
 ## Dependencies
 
 None.
