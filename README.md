@@ -17,7 +17,7 @@ Available variables are listed below, along with default values (see `defaults/m
 The path to the Postfix `main.cf` configuration file.
 
     postfix_service_state: started
-    postfix_service_enabled: yes
+    postfix_service_enabled: true
 
 The state in which the Postfix service should be after this role runs, and whether to enable the service on startup.
 
