@@ -21,10 +21,11 @@ The path to the Postfix `main.cf` configuration file.
 
 The state in which the Postfix service should be after this role runs, and whether to enable the service on startup.
 
-    postfix_inet_interfaces: localhost
-    postfix_inet_protocols: all
+    postfix_config:
+      inet_interfaces: localhost
+      inet_protocols: all
 
-Options for values `inet_interfaces` and `inet_protocols` in the `main.cf` file.
+The `postfix_config` can be used to add/update any postfix confiuration option; defaults set `inet_interfaces` and `inet_protocols` in the `main.cf` file.
 
 ## Dependencies
 
