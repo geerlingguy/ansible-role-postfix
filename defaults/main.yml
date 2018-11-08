@@ -4,5 +4,6 @@ postfix_config_file: /etc/postfix/main.cf
 postfix_service_state: started
 postfix_service_enabled: true
 
-postfix_inet_interfaces: localhost
-postfix_inet_protocols: all
+postfix_config:
+  inet_interfaces: localhost
+  inet_protocols: all
