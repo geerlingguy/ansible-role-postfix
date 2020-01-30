@@ -10,7 +10,9 @@
 
     - name: Override postfix_inet_protocols (RHEL).
       set_fact:
-        postfix_inet_protocols: ipv4
+        postfix_config:
+          - name: inet_protocols
+            value: ipv4
       when: ansible_os_family == 'RedHat'
 
   roles:
