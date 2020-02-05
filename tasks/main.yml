@@ -7,7 +7,7 @@
 - name: Update Postfix configuration.
   lineinfile:
     dest: "{{ postfix_config_file }}"
-    line: "{{ item.name }} = {{ item.value }}"
+    line: "{{ item.name }} = {{ vars['postfix_' + item.name]|default(item.value) }}"
     regexp: "^{{ item.name }} ="
   with_items: "{{ postfix_config }}"
   notify: restart postfix
