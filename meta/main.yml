@@ -2,6 +2,7 @@
 dependencies: []
 
 galaxy_info:
+  role_name: postfix
   author: geerlingguy
   description: Postfix for RedHat/CentOS or Debian/Ubuntu.
   company: "Midwestern Mac, LLC"
