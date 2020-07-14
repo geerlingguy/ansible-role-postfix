@@ -29,9 +29,6 @@ The state in which the Postfix service should be after this role runs, and wheth
         value: '{{ postfix_inet_interfaces }}'
     - option: 'inet_protocols'
         value: '{{ postfix_inet_protocols }}'
-    - option: 'relayhost'
-        value: '[localhost]'
-        insertafter: '#relayhost'
 
 Global configuration options that will be set in `{{ postfix_config_file }}`.  If you need to define additional values
 you will have to redefine the values in the default.

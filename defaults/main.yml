@@ -12,6 +12,3 @@ postfix_config_options:
     value: "{{ postfix_inet_interfaces }}"
   - option: "inet_protocols"
     value: "{{ postfix_inet_protocols }}"
-  - option: "relayhost"
-    value: "[localhost]"
-    insertafter: "#relayhost"
