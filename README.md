@@ -24,7 +24,17 @@ The state in which the Postfix service should be after this role runs, and wheth
     postfix_inet_interfaces: localhost
     postfix_inet_protocols: all
 
-Options for values `inet_interfaces` and `inet_protocols` in the `main.cf` file.
+    postfix_config_options:
+    - option: 'inet_interfaces'
+        value: '{{ postfix_inet_interfaces }}'
+    - option: 'inet_protocols'
+        value: '{{ postfix_inet_protocols }}'
+    - option: 'relayhost'
+        value: '[localhost]'
+        insertafter: '#relayhost'
+
+Global configuration options that will be set in `{{ postfix_config_file }}`.  If you need to define additional values
+you will have to redefine the values in the default.
 
 ## Dependencies
 

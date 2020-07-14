@@ -6,3 +6,12 @@ postfix_service_enabled: true
 
 postfix_inet_interfaces: localhost
 postfix_inet_protocols: all
+
+postfix_config_options:
+  - option: "inet_interfaces"
+    value: "{{ postfix_inet_interfaces }}"
+  - option: "inet_protocols"
+    value: "{{ postfix_inet_protocols }}"
+  - option: "relayhost"
+    value: "[localhost]"
+    insertafter: "#relayhost"
