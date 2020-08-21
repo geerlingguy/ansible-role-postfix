@@ -9,6 +9,7 @@
     dest: "{{ postfix_config_file }}"
     line: "{{ item.name }} = {{ item.value }}"
     regexp: "^{{ item.name }} ="
+    mode: 0644
   with_items:
     - name: inet_interfaces
       value: "{{ postfix_inet_interfaces }}"
