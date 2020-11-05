@@ -1,6 +1,6 @@
 # Ansible Role: Postfix
 
-[![Build Status](https://travis-ci.com/geerlingguy/ansible-role-postfix.svg?branch=master)](https://travis-ci.com/geerlingguy/ansible-role-postfix)
+[![CI](https://github.com/geerlingguy/ansible-role-postfix/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-postfix/actions?query=workflow%3ACI)
 
 Installs postfix on RedHat/CentOS or Debian/Ubuntu.
 
