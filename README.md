@@ -23,7 +23,7 @@ The state in which the Postfix service should be after this role runs, and wheth
 
     postfix_inet_interfaces: localhost
     postfix_inet_protocols: all
-    postfix_mynetworks: 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 
+    postfix_mynetworks: OS Package default, overwrite by setting a value, e.g. "127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128"
 
 Options for values `inet_interfaces`, `inet_protocols` and `mynetworks` in the `main.cf` file.
 
