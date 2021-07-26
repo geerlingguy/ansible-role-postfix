@@ -14,8 +14,13 @@
       value: "{{ postfix_inet_interfaces }}"
     - name: inet_protocols
       value: "{{ postfix_inet_protocols }}"
-    - name: mynetworks
-      value: "{{ postfix_mynetworks | default(omit) }} }}"
+  notify: restart postfix
+
+- name: Update Postfix mynetworks configuration.
+  lineinfile:
+    dest: "{{ postfix_config_file }}"
+    line: "mynetworks = {{ postfix_mynetworks }}"
+  when: postfix_mynetworks is defined
   notify: restart postfix
 
 - name: Ensure postfix is started and enabled at boot.
