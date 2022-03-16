@@ -25,7 +25,7 @@ The state in which the Postfix service should be after this role runs, and wheth
     postfix_inet_protocols: all
     postfix_relayhost: ''
 
-Options for values `inet_interfaces`, `inet_protocols` and `relayhost` in the `main.cf` file. Relayhost defaults to empty, is something like `mailgw.example.com`.
+Options for values `inet_interfaces`, `inet_protocols` and `relayhost` in the `main.cf` file. Relayhost defaults to empty, can be something like `mailgw.example.com`.
 
 ## Dependencies
 
