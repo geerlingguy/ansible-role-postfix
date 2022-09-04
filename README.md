@@ -26,6 +26,14 @@ The state in which the Postfix service should be after this role runs, and wheth
 
 Options for values `inet_interfaces` and `inet_protocols` in the `main.cf` file.
 
+    postfix_extra_parameters:
+        - { name: 'maximal_queue_lifetime', value: '1h' }
+        - { name: 'maximal_backoff_time', value: '15m' }
+        - { name: 'minimal_backoff_time', value: '5m' }
+        - { name: 'queue_run_delay', value: '5m' }
+
+Extra parameters in the `main.cf` file.
+
 ## Dependencies
 
 None.

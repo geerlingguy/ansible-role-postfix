@@ -17,6 +17,15 @@
       value: "{{ postfix_inet_protocols }}"
   notify: restart postfix
 
+- name: Update Postfix extra parameters.
+  lineinfile:
+    dest: "{{ postfix_config_file }}"
+    line: "{{ item.name }} = {{ item.value }}"
+    regexp: "^{{ item.name }} ="
+    mode: 0644
+  with_items: "{{ postfix_extra_parameters | default([], true) }}"
+  notify: restart postfix
+
 - name: Ensure postfix is started and enabled at boot.
   service:
     name: postfix
