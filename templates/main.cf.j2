@@ -22,7 +22,7 @@ readme_directory = no
 # fresh installs.
 compatibility_level = 3.6
 
-
+{% if postfix_maillog_file is defined %}maillog_file = {{ postfix_maillog_file }}{% endif %}
 
 # TLS parameters
 smtpd_tls_cert_file={{ postfix_smtpd_tls_cert_file }}
