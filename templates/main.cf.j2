@@ -48,3 +48,9 @@ mailbox_size_limit = 0
 recipient_delimiter = +
 inet_interfaces = {{ postfix_inet_interfaces }}
 inet_protocols = {{ postfix_inet_protocols }}
+
+{% if postfix_dkim_socket is defined %}
+smtpd_milters = {{ postfix_dkim_socket }}
+non_smtpd_milters = $smtpd_milters
+milter_default_action = accept
+{% endif %}
