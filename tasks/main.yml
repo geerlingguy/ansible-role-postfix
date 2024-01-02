@@ -15,6 +15,15 @@
       value: "{{ postfix_inet_interfaces }}"
     - name: inet_protocols
       value: "{{ postfix_inet_protocols }}"
+  when: postfix_template is not defined
+  notify: restart postfix
+
+- name: Apply Postfix template
+  template:
+    dest: "{{ postfix_config_file }}"
+    src: "{{ postfix_template }}"
+    mode: 0644
+  when: postfix_template is defined
   notify: restart postfix
 
 - name: Ensure postfix is started and enabled at boot.
