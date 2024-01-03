@@ -26,6 +26,18 @@
   when: postfix_template is defined
   notify: restart postfix
 
+- name: Apply transport template if any transport rule is defined
+  template:
+    src: "{{ postfix_transport_template }}"
+    dest: "{{ postfix_transport_file }}"
+    mode: 0644
+  when: postfix_transport is defined
+  register: transport_file
+
+- name: Build postmap
+  command: postmap {{ postfix_transport_file }}
+  when: transport_file.changed
+
 - name: Ensure postfix is started and enabled at boot.
   service:
     name: postfix

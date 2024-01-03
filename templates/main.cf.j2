@@ -35,13 +35,15 @@ smtp_tls_CApath=/etc/ssl/certs
 smtp_tls_security_level=may
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 
-smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
+smtpd_relay_restrictions = {{ postfix_smtpd_relay_restrictions }}
 
 myhostname = {{ postfix_myhostname }}
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
-mydestination = $myhostname, localdomain, localhost, localhost.localdomain, localhost
-relayhost = 
+mydestination = {{ postfix_mydestination }}
+{% if postfix_relayhost is defined %}
+relayhost = {{ postfix_relayhost }}
+{% endif %}
 mynetworks = {{ postfix_mynetworks }}
 {% if postfix_mynetworks_style is defined %}
 mynetworks_style = {{ postfix_mynetworks_style }}
@@ -55,4 +57,8 @@ inet_protocols = {{ postfix_inet_protocols }}
 smtpd_milters = {{ postfix_dkim_socket }}
 non_smtpd_milters = $smtpd_milters
 milter_default_action = accept
+{% endif %}
+
+{% if postfix_transport_file is defined and postfix_transports is defined %}
+transport_maps = {{ postfix_transport_file }}
 {% endif %}

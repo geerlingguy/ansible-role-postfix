@@ -17,3 +17,9 @@ postfix_smtpd_tls_security_level: may
 
 postfix_maillog_file: /var/log/postfix.log
 postfix_myhostname: "{{ inventory_hostname }}"
+
+postfix_transport_template: transport.j2
+postfix_transport_file: /etc/postfix/transport
+
+postfix_smtpd_relay_restrictions: permit_mynetworks permit_sasl_authenticated defer_unauth_destination
+postfix_mydestination: $myhostname, localdomain, localhost, localhost.localdomain, localhost
