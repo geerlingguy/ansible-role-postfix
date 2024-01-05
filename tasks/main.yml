@@ -15,15 +15,18 @@
       value: "{{ postfix_inet_interfaces }}"
     - name: inet_protocols
       value: "{{ postfix_inet_protocols }}"
-  when: postfix_template is not defined
+  when: postfix_templates is not defined
   notify: restart postfix
 
-- name: Apply Postfix template
+- name: Apply Postfix templates
   template:
-    dest: "{{ postfix_config_file }}"
-    src: "{{ postfix_template }}"
-    mode: 0644
-  when: postfix_template is defined
+    dest: "{{ item.dest }}"
+    src: "{{ item.src }}"
+    mode: "{{ item.mode | default('0644') }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+  when: postfix_templates is defined
+  loop: "{{ postfix_templates }}"
   notify: restart postfix
 
 - name: Apply transport template if any transport rule is defined
@@ -37,6 +40,7 @@
 - name: Build postmap
   command: postmap {{ postfix_transport_file }}
   when: transport_file.changed
+  notify: restart postfix
 
 - name: Ensure postfix is started and enabled at boot.
   service:
