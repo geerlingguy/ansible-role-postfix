@@ -6,7 +6,7 @@ Installs postfix on RedHat/CentOS or Debian/Ubuntu.
 
 ## Requirements
 
-If you're using this as an SMTP relay server, you will need to do that on your own, and open TCP port 25 in your server firewall.
+If you're using this as an SMTP relay server, you will need to open TCP port 25 in your server firewall.
 
 ## Role Variables
 
@@ -24,7 +24,32 @@ The state in which the Postfix service should be after this role runs, and wheth
     postfix_inet_interfaces: localhost
     postfix_inet_protocols: all
 
-Options for values `inet_interfaces` and `inet_protocols` in the `main.cf` file.
+Options for values `inet_interfaces` and `inet_protocols` in the `main.cf` file. 
+
+    postfix_smtpd_banner
+    postfix_mynetworks
+    postfix_smtpd_tls_cert_file
+    postfix_smtpd_tls_key_file
+    postfix_smtpd_tls_security_level
+    postfix_maillog_file
+    postfix_myhostname
+    postfix_smtpd_relay_restrictions
+    postfix_mydestination
+
+Options that will be set if the built-in template is used.
+
+    postfix_templates
+
+List of `src` and `dest` with templates to deploy.
+
+    postfix_transport_template
+    postfix_transport_file
+
+Options for the postfix tranport file and template. This is handeled outside of other templates because it has to be managed in a different way.
+
+    postfix_transports
+
+List of entries for the postfix transports file.
 
 ## Dependencies
 
@@ -35,6 +60,20 @@ None.
     - hosts: all
       roles:
         - geerlingguy.postfix
+      vars:
+        postfix_templates:
+          - src: main.cf.j2
+            dest: /etc/postfix/main.cf
+          - src: master.cf.j2
+            dest: /etc/postfix/master.cf
+            mode: 0664
+            owner: root
+            group: postfix
+        postfix_transports:
+          - pattern: *@subdomain.example.com
+            method: smtp
+            nexthop: 10.0.0.2
+        postfix_dkim_socket: "unix:/opendkim/opendkim.sock"
 
 ## License
 
