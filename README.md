@@ -1,6 +1,6 @@
 # Ansible Role: Postfix
 
-[![CI](https://github.com/geerlingguy/ansible-role-postfix/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-postfix/actions?query=workflow%3ACI)
+[![CI](https://github.com/geerlingguy/ansible-role-postfix/actions/workflows/ci.yml/badge.svg)](https://github.com/geerlingguy/ansible-role-postfix/actions/workflows/ci.yml)
 
 Installs postfix on RedHat/CentOS or Debian/Ubuntu.
 
