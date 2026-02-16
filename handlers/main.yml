@@ -1,3 +1,7 @@
 ---
-- name: restart postfix
-  service: name=postfix state=restarted
+- name: Postfix | Restart postfix
+  ansible.builtin.service: 
+    name: postfix
+    state: restarted
+  listen: restart postfix
+  tags: postfix
