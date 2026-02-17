@@ -1,11 +1,10 @@
 ---
-- name: Postfix | Ensure postfix is installed.
+- name: Ensure postfix is installed.
   ansible.builtin.package:
     name: postfix
     state: present
-  tags: postfix
 
-- name: Postfix | Update Postfix configuration.
+- name: Update Postfix configuration.
   ansible.builtin.lineinfile:
     dest: "{{ postfix_config_file }}"
     line: "{{ item.name }} = {{ item.value }}"
@@ -17,11 +16,9 @@
     - name: inet_protocols
       value: "{{ postfix_inet_protocols }}"
   notify: restart postfix
-  tags: postfix 
 
-- name: Postfix | Ensure postfix is started and enabled at boot.
+- name: Ensure postfix is started and enabled at boot.
   ansible.builtin.service:
     name: postfix
     state: "{{ postfix_service_state }}"
     enabled: "{{ postfix_service_enabled }}"
-  tags: postfix
